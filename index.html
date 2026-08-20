@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zeniaaaa 💍</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#fff5f7,#ffe8ee);
+  color:#3b2028;
+}
+
+.card{
+  width:min(92%,500px);
+  padding:45px 25px;
+  text-align:center;
+  background:rgba(255,255,255,.8);
+  border-radius:28px;
+  box-shadow:0 20px 60px rgba(150,60,90,.15);
+  backdrop-filter:blur(12px);
+  animation:appear 1s ease;
+}
+
+.heart{
+  font-size:65px;
+  animation:beat 1.2s infinite;
+}
+
+h1{
+  font-size:42px;
+  margin:10px 0;
+}
+
+h2{
+  font-size:25px;
+  font-weight:500;
+  margin:20px 0 35px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  min-height:60px;
+}
+
+button{
+  border:0;
+  padding:14px 30px;
+  border-radius:999px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.25s;
+}
+
+#yes{
+  background:#e85d7a;
+  color:white;
+  box-shadow:0 8px 20px rgba(232,93,122,.25);
+}
+
+#yes:hover{
+  transform:scale(1.08);
+}
+
+#no{
+  background:#eee;
+  color:#555;
+  position:relative;
+}
+
+#message{
+  display:none;
+  margin-top:30px;
+  font-size:24px;
+  line-height:1.5;
+  animation:appear .8s ease;
+}
+
+.float{
+  position:fixed;
+  pointer-events:none;
+  animation:floatUp 5s linear forwards;
+  font-size:22px;
+}
+
+@keyframes beat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.12)}
+}
+
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(0);
+    opacity:1;
+  }
+  to{
+    transform:translateY(-110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+@media(max-width:500px){
+  h1{font-size:34px}
+  h2{font-size:21px}
+  .card{padding:38px 18px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="heart">💗</div>
+
+  <h1>Zeniaaaa</h1>
+
+  <h2>Will you marry me? 💍 han kehna wrna goli mar dn ga (gussy wala emoji) </h2>
+
+  <div class="buttons">
+
+    <button id="yes">YES 💖</button>
+
+    <button id="no">NO 😭</button>
+
+  </div>
+
+  <div id="message">
+    I knew it! 😭💗<br>
+    AWWWWWWWWWWWW mera bachww thank youuhh muaawwh. 💍✨
+  </div>
+
+</div>
+
+<script>
+
+const noButton = document.getElementById("no");
+const yesButton = document.getElementById("yes");
+const message = document.getElementById("message");
+
+/*
+  The NO button moves when approached.
+  This is just a playful animation.
+*/
+
+function moveNo(){
+
+  const padding = 20;
+
+  const maxX = window.innerWidth - noButton.offsetWidth - padding;
+  const maxY = window.innerHeight - noButton.offsetHeight - padding;
+
+  const x = Math.max(
+    padding,
+    Math.random() * maxX
+  );
+
+  const y = Math.max(
+    padding,
+    Math.random() * maxY
+  );
+
+  noButton.style.position = "fixed";
+  noButton.style.left = x + "px";
+  noButton.style.top = y + "px";
+}
+
+/* Desktop */
+noButton.addEventListener("mouseenter", moveNo);
+
+/* Mobile */
+noButton.addEventListener("touchstart", function(e){
+  e.preventDefault();
+  moveNo();
+});
+
+/* YES */
+yesButton.addEventListener("click", function(){
+
+  document.querySelector(".buttons").style.display = "none";
+  message.style.display = "block";
+
+  for(let i=0;i<25;i++){
+    createHeart();
+  }
+
+});
+
+function createHeart(){
+
+  const heart = document.createElement("div");
+
+  heart.className = "float";
+  heart.textContent =
+    ["💗","💖","💕","💘","💝"][Math.floor(Math.random()*5)];
+
+  heart.style.left =
+    Math.random()*100 + "vw";
+
+  heart.style.bottom = "-30px";
+
+  heart.style.animationDuration =
+    (3 + Math.random()*3) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },6000);
+}
+
+</script>
+
+</body>
+</html>
