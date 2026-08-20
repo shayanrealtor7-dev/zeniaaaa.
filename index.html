@@ -130,12 +130,104 @@ button{
   h1{font-size:34px}
   h2{font-size:21px}
   .card{padding:38px 18px}
+} 
+  #loveScene{
+  display:none;
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:50;
+}
+
+#zeniaPic{
+  position:absolute;
+  left:25px;
+  bottom:25px;
+  width:125px;
+  height:125px;
+  object-fit:cover;
+  border-radius:22px;
+  border:5px solid white;
+  box-shadow:0 12px 35px rgba(0,0,0,.2);
+  animation:photoPop .8s ease;
+}
+
+#bunny{
+  position:absolute;
+  left:55px;
+  bottom:165px;
+  font-size:65px;
+  animation:bunnyKiss 3s ease-in-out forwards;
+}
+
+.kiss{
+  position:absolute;
+  right:-15px;
+  top:5px;
+  font-size:28px;
+  opacity:0;
+  animation:kissPop .5s 2.2s ease forwards;
+}
+
+@keyframes photoPop{
+  from{
+    transform:scale(0) rotate(-10deg);
+    opacity:0;
+  }
+  to{
+    transform:scale(1) rotate(0);
+    opacity:1;
+  }
+}
+
+@keyframes bunnyKiss{
+  0%{
+    transform:translate(100vw,-20px) rotate(10deg);
+  }
+
+  55%{
+    transform:translate(20px,80px) rotate(-5deg);
+  }
+
+  75%{
+    transform:translate(0,80px) scale(1.1);
+  }
+
+  100%{
+    transform:translate(0,80px) scale(1);
+  }
+}
+
+@keyframes kissPop{
+  0%{
+    opacity:0;
+    transform:scale(.2);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.4);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
 }
 </style>
 </head>
 
 <body>
+<div id="loveScene">
 
+  <img id="zeniaPic" src="IMG_20260820_182526_880.jpg">
+
+  <div id="bunny">
+    🐰
+    <span class="kiss">💋</span>
+  </div>
+
+</div>
 <div class="card">
 
   <div class="heart">💗</div>
@@ -206,6 +298,8 @@ yesButton.addEventListener("click", function(){
 
   document.querySelector(".buttons").style.display = "none";
   message.style.display = "block";
+
+  document.getElementById("loveScene").style.display = "block";
 
   for(let i=0;i<25;i++){
     createHeart();
